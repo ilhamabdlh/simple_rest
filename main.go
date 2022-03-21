@@ -6,8 +6,8 @@ import (
 	"log"
 	"net/http"
 
-	"/go-rest-api/helper"
-	"/go-rest-api/transfer"
+	"github.com/ilhamabdlh/simple_rest/helper"
+	"github.com/ilhamabdlh/simple_rest/transfer"
 	"github.com/gorilla/mux"
 	"go.mongodb.org/mongo-driver/bson"
 	"github.com/labstack/echo"
