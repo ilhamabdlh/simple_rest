@@ -20,7 +20,7 @@ func getBooks(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
 	// we created Book array
-	var books []models.Book
+	var books []transfer.Book
 
 	// bson.M{},  we passed empty filter. So we want to get all data.
 	cur, err := collection.Find(context.TODO(), bson.M{})
@@ -38,7 +38,7 @@ func getBooks(w http.ResponseWriter, r *http.Request) {
 	for cur.Next(context.TODO()) {
 
 		// create a value into which the single document can be decoded
-		var book models.Book
+		var book transfer.Book
 		// & character returns the memory address of the following variable.
 		err := cur.Decode(&book) // decode similar to deserialize process.
 		if err != nil {
@@ -60,7 +60,7 @@ func getBook(w http.ResponseWriter, r *http.Request) {
 	// set header.
 	w.Header().Set("Content-Type", "application/json")
 
-	var book models.Account
+	var book transfer.Account
 	// we get params with mux.
 	var params = mux.Vars(r)
 
@@ -83,7 +83,7 @@ func getBook(w http.ResponseWriter, r *http.Request) {
 func createBook(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
-	var book models.Account
+	var book transfer.Account
 
 	// we decode our body request params
 	_ = json.NewDecoder(r.Body).Decode(&book)
